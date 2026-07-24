@@ -9,7 +9,8 @@
     "start": "next start",
     "pipeline": "tsx scripts/run-pipeline.ts",
     "pipeline:mock": "PIPELINE_MODE=mock tsx scripts/run-pipeline.ts",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit",
+    "test": "node --import tsx --test tests/*.test.ts"
   },
   "dependencies": {
     "@anthropic-ai/sdk": "^0.114.0",
