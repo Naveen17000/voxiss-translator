@@ -176,6 +176,52 @@ reports/       committed output of a real run
 
 ---
 
+## Tests
+
+```bash
+npm test     # 62 tests, no key and no network required
+```
+
+The suite is aimed at the claims this design makes, not at coverage percentage:
+
+- **Fidelity to the brief.** The 18 strings are asserted against values transcribed from the task, so
+  a string can't be quietly edited to make the pipeline look better.
+- **The live API path**, which otherwise never runs here. The real SDK is pointed at a local stub of
+  the Messages API via `ANTHROPIC_BASE_URL`, exercising request construction, response parsing,
+  `stop_reason` handling and error mapping. Specifically guarded: no `temperature`/`top_p`/`top_k` in
+  the body; a `thinking` block sits *first* in the stubbed response, so any code indexing `content[0]`
+  for text fails here rather than in production.
+- **The trust boundary.** A response claiming `severity: "critical"` on a minor category still costs
+  10, and an unknown category is dropped rather than scored. The model cannot inflate a score even if
+  it tries.
+- **The two false positives that would discredit the tool.** `Open → Reabrir` must not trip the length
+  check (a correct 1.75× expansion), and the two `Due` rows must not trip the consistency check.
+- **Score reconciliation.** Every score in a full run is recomputed from its own issue list.
+
+## What is and isn't verified
+
+Worth being straight about, since it changes how much weight to put on the numbers:
+
+| | |
+|---|---|
+| Deterministic checks, scoring policy, routing | Unit tested, exact assertions |
+| Request/response handling against the real SDK | Tested against a local stub |
+| Full pipeline, CLI, report rendering, web app, API route | Exercised end to end from a clean clone |
+| **Claude's actual judgment on these strings** | **Not yet run — no API key available at build time** |
+
+The committed run in `reports/` is a **fixture run**, and says so in a banner on the page and at the
+top of the Markdown report. The fixtures encode the analysis I'd expect the model to reach; they are
+not model output, and nothing here pretends otherwise. One `npm run pipeline` with a key replaces them
+with real results and the banner disappears.
+
+The specific thing that can't be known until then: whether the model over-flags. Five of the eight
+existing translations are correct, and a scorer that invents issues on correct strings would be worse
+than useless. The prompt tells it that an empty issue list is a normal result, and the penalty table
+means a spurious `fluency` flag costs 10 rather than sinking a string — but that's a design argument,
+not evidence.
+
+---
+
 ## API notes
 
 - **Structured outputs** (`output_config.format` with a JSON schema) rather than "please reply with
