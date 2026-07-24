@@ -3,7 +3,7 @@
 > **Fixture run.** No model was called. The deterministic checks and the scoring
 > arithmetic below are real; the judgment layer is stubbed from committed fixtures.
 
-Run 2026-07-24T15:04:18.875Z · mock · model (fixtures — no model called) · effort high
+Run 2026-07-24T15:13:15.066Z · mock · model (fixtures — no model called) · effort high
 Scoring policy v1.0.0 · prompts v1.0.0 · 0 API calls
 
 ## Summary

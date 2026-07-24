@@ -1,13 +1,17 @@
-import { readFileSync } from 'node:fs'
-import { join } from 'node:path'
 import { SEVERITY_PENALTY, ISSUE_CATALOG } from '@/pipeline/config'
 import { explainScore } from '@/pipeline/scoring'
 import { ROLE_LABEL } from '@/pipeline/uiRole'
+import baseline from '../../reports/baseline.json'
 import type { PipelineRun, ScoreResult, TranslationResult } from '@/pipeline/types'
 import { TryIt } from './components/TryIt'
 
+/**
+ * The committed output of a real run, imported at build time. The page is
+ * therefore static and instant — a reviewer opening the link does not wait on
+ * 18 API calls, and does not need my key to be in credit to see the results.
+ */
 function loadRun(): PipelineRun {
-  return JSON.parse(readFileSync(join(process.cwd(), 'reports', 'baseline.json'), 'utf8'))
+  return baseline as unknown as PipelineRun
 }
 
 function tone(score: number): 'pass' | 'watch' | 'fail' {

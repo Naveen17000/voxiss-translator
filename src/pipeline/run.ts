@@ -1,22 +1,26 @@
-import { readFileSync } from 'node:fs'
-import { join } from 'node:path'
 import { DEFAULT_EFFORT, DEFAULT_MODEL, PROMPT_VERSION, SCORING_POLICY_VERSION } from './config'
 import { newStats } from './claude'
 import { scoreBatch } from './score'
 import { translateBatch } from './translate'
+import sourceStrings from '../../data/source-strings.json'
+import existingTranslations from '../../data/existing-translations.json'
+import glossaryData from '../../data/glossary.json'
 import type { ExistingTranslation, Glossary, PipelineRun, SourceString } from './types'
 
-const DATA_DIR = join(process.cwd(), 'data')
-
-function readJson<T>(name: string): T {
-  return JSON.parse(readFileSync(join(DATA_DIR, name), 'utf8')) as T
-}
-
+/**
+ * Imported rather than read off disk at runtime. The API route runs in a
+ * serverless function on Vercel, and Next's build tracing cannot follow a
+ * dynamically-constructed `readFileSync(join(process.cwd(), ...))` — the data
+ * files would be missing from the bundle and the route would 500 with ENOENT
+ * in production while working perfectly on a laptop. A static import is
+ * bundled, so it works identically in both places.
+ */
 export function loadInputs() {
-  const sources = readJson<{ strings: SourceString[] }>('source-strings.json')
-  const existing = readJson<{ translations: ExistingTranslation[] }>('existing-translations.json')
-  const glossary = readJson<Glossary>('glossary.json')
-  return { strings: sources.strings, translations: existing.translations, glossary }
+  return {
+    strings: sourceStrings.strings as SourceString[],
+    translations: existingTranslations.translations as ExistingTranslation[],
+    glossary: glossaryData as Glossary,
+  }
 }
 
 export function resolveMode(): 'live' | 'mock' {
