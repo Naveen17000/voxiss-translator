@@ -1,0 +1,511 @@
+{
+  "meta": {
+    "startedAt": "2026-07-24T15:04:18.872Z",
+    "finishedAt": "2026-07-24T15:04:18.875Z",
+    "mode": "mock",
+    "model": "(fixtures — no model called)",
+    "effort": "high",
+    "promptVersion": "1.0.0",
+    "scoringPolicyVersion": "1.0.0",
+    "apiCalls": 0,
+    "usage": {
+      "inputTokens": 0,
+      "outputTokens": 0
+    },
+    "requestIds": []
+  },
+  "translations": [
+    {
+      "key": "ticket.button.open",
+      "source": "Open",
+      "comment": "Button an agent clicks to open a closed support ticket back up",
+      "uiRole": "action",
+      "isAmbiguous": true,
+      "ambiguousWith": [
+        "settings.hours.status_label_open"
+      ],
+      "translation": "Reabrir",
+      "alternativesConsidered": [
+        {
+          "text": "Abrir",
+          "rejectedBecause": "Correct verb, but the comment says the ticket was closed and is being opened back up, which Spanish marks with the re- prefix."
+        },
+        {
+          "text": "Abierto",
+          "rejectedBecause": "An adjective describing a state. This is a button, so it needs a command."
+        }
+      ],
+      "disambiguationNote": "This is a button an agent presses, so Spanish needs a verb, not a description. The comment says the ticket is being opened back up after being closed, so \"Reabrir\" (reopen) is more precise than plain \"Abrir\".",
+      "confidence": "high",
+      "assumptions": []
+    },
+    {
+      "key": "settings.hours.status_label_open",
+      "source": "Open",
+      "comment": "Label shown when the support desk is currently open for business",
+      "uiRole": "state",
+      "isAmbiguous": true,
+      "ambiguousWith": [
+        "ticket.button.open"
+      ],
+      "translation": "Abierto",
+      "alternativesConsidered": [
+        {
+          "text": "Abrir",
+          "rejectedBecause": "That is a command. Nothing is being clicked here — the label describes the desk's current state."
+        }
+      ],
+      "disambiguationNote": "Same English word as the ticket button, opposite grammar. This one reports that the support desk is currently open for business, so Spanish uses the adjective \"Abierto\".",
+      "confidence": "high",
+      "assumptions": []
+    },
+    {
+      "key": "ticket.button.close",
+      "source": "Close",
+      "comment": "Button an agent clicks to mark a ticket as resolved/closed",
+      "uiRole": "action",
+      "isAmbiguous": false,
+      "ambiguousWith": [],
+      "translation": "Cerrar",
+      "alternativesConsidered": [
+        {
+          "text": "Cerrado",
+          "rejectedBecause": "A state, not an action. Wrong form for a button."
+        },
+        {
+          "text": "Resolver",
+          "rejectedBecause": "Reads well, but the source says Close and the paired reopen button is \"Reabrir\"; keeping the open/close pairing is clearer."
+        }
+      ],
+      "disambiguationNote": "A button, so the infinitive \"Cerrar\". It pairs with \"Reabrir\" on the same ticket.",
+      "confidence": "high",
+      "assumptions": []
+    },
+    {
+      "key": "feed.button.post",
+      "source": "Post",
+      "comment": "Button to publish a new post to the internal team feed",
+      "uiRole": "action",
+      "isAmbiguous": true,
+      "ambiguousWith": [
+        "mail.label.post"
+      ],
+      "translation": "Publicar",
+      "alternativesConsidered": [
+        {
+          "text": "Correo",
+          "rejectedBecause": "That is the postal sense of \"post\". This button publishes to a feed."
+        },
+        {
+          "text": "Enviar",
+          "rejectedBecause": "Means send. Publishing to a shared feed is more specific."
+        }
+      ],
+      "disambiguationNote": "\"Post\" here is the verb used in social feeds, not anything to do with mail. As a button it takes the infinitive \"Publicar\".",
+      "confidence": "high",
+      "assumptions": []
+    },
+    {
+      "key": "mail.label.post",
+      "source": "Post",
+      "comment": "Label for a physical mail correspondence address field",
+      "uiRole": "label",
+      "isAmbiguous": true,
+      "ambiguousWith": [
+        "feed.button.post"
+      ],
+      "translation": "Correo postal",
+      "alternativesConsidered": [
+        {
+          "text": "Publicar",
+          "rejectedBecause": "The feed sense of \"post\". This field is about physical mail."
+        },
+        {
+          "text": "Correo",
+          "rejectedBecause": "Ambiguous in Spanish — it reads as email first. \"Postal\" removes the doubt."
+        }
+      ],
+      "disambiguationNote": "Same English word as the feed button, completely different meaning. This is a field label for a physical correspondence address, so it needs a noun phrase, and \"postal\" is what stops Spanish readers assuming email.",
+      "confidence": "high",
+      "assumptions": [
+        "Read as the label for the address field itself rather than a section heading above several fields."
+      ]
+    },
+    {
+      "key": "ticket.button.assign",
+      "source": "Assign",
+      "comment": "Button to assign a ticket to a specific agent",
+      "uiRole": "action",
+      "isAmbiguous": false,
+      "ambiguousWith": [],
+      "translation": "Asignar",
+      "alternativesConsidered": [],
+      "disambiguationNote": "Unambiguous. A button, so the infinitive.",
+      "confidence": "high",
+      "assumptions": []
+    },
+    {
+      "key": "ticket.field.due",
+      "source": "Due",
+      "comment": "Field showing the due date/deadline for resolving a ticket",
+      "uiRole": "label",
+      "isAmbiguous": true,
+      "ambiguousWith": [
+        "invoice.field.amount_due"
+      ],
+      "translation": "Vencimiento",
+      "alternativesConsidered": [
+        {
+          "text": "Fecha de vencimiento",
+          "rejectedBecause": "Accurate but long for a field label; \"Vencimiento\" already reads as the due date in Spanish UIs."
+        },
+        {
+          "text": "Vencido",
+          "rejectedBecause": "Means overdue. The field shows the deadline, not whether it has passed."
+        }
+      ],
+      "disambiguationNote": "The deadline for resolving a ticket. A field label, so a noun.",
+      "confidence": "high",
+      "assumptions": []
+    },
+    {
+      "key": "invoice.field.amount_due",
+      "source": "Due",
+      "comment": "Field showing the amount of money owed on an invoice",
+      "uiRole": "label",
+      "isAmbiguous": true,
+      "ambiguousWith": [
+        "ticket.field.due"
+      ],
+      "translation": "Importe adeudado",
+      "alternativesConsidered": [
+        {
+          "text": "Vencimiento",
+          "rejectedBecause": "That is the due date sense. This field is money owed, not a date."
+        },
+        {
+          "text": "Vencido",
+          "rejectedBecause": "Means overdue — it asserts the payment is late, which the English does not."
+        }
+      ],
+      "disambiguationNote": "Same English word as the ticket deadline field, but the key and comment both say this is an amount of money. \"Importe adeudado\" is the balance owed and says nothing about whether it is late.",
+      "confidence": "high",
+      "assumptions": []
+    },
+    {
+      "key": "ticket.button.share",
+      "source": "Share",
+      "comment": "Button to share a ticket's link with another teammate",
+      "uiRole": "action",
+      "isAmbiguous": false,
+      "ambiguousWith": [],
+      "translation": "Compartir",
+      "alternativesConsidered": [],
+      "disambiguationNote": "Unambiguous. A button, so the infinitive.",
+      "confidence": "high",
+      "assumptions": []
+    },
+    {
+      "key": "report.button.export",
+      "source": "Export",
+      "comment": "Button to export a report as a CSV or PDF file",
+      "uiRole": "action",
+      "isAmbiguous": false,
+      "ambiguousWith": [],
+      "translation": "Exportar",
+      "alternativesConsidered": [],
+      "disambiguationNote": "Unambiguous. A button, so the infinitive.",
+      "confidence": "high",
+      "assumptions": []
+    }
+  ],
+  "scores": [
+    {
+      "key": "ticket.button.open",
+      "source": "Open",
+      "target": "Abierto",
+      "comment": "Button an agent clicks to open a closed support ticket back up",
+      "contextRecovered": true,
+      "uiRole": "action",
+      "issues": [
+        {
+          "type": "ui_role_mismatch",
+          "severity": "major",
+          "source": "model",
+          "explanation": "This is a button an agent clicks, but \"Abierto\" is a description of a state rather than an instruction — like labelling a button \"Opened\" instead of \"Open\".",
+          "evidence": "Abierto",
+          "suggestion": "Reabrir"
+        },
+        {
+          "type": "wrong_sense",
+          "severity": "critical",
+          "source": "model",
+          "explanation": "The English \"Open\" here is the action of reopening a closed ticket, and this translation picked the meaning \"is currently open\" instead.",
+          "evidence": "Abierto",
+          "suggestion": "Reabrir"
+        }
+      ],
+      "score": 35,
+      "band": "reject",
+      "action": "Retranslate",
+      "forcedToHuman": true
+    },
+    {
+      "key": "ticket.button.close",
+      "source": "Close",
+      "target": "Cerrar",
+      "comment": "Button an agent clicks to mark a ticket as resolved/closed",
+      "contextRecovered": true,
+      "uiRole": "action",
+      "issues": [],
+      "score": 100,
+      "band": "approve",
+      "action": "Ship as is",
+      "forcedToHuman": false
+    },
+    {
+      "key": "invoice.field.amount_due",
+      "source": "Due",
+      "target": "Vencido",
+      "comment": "Field showing the amount of money owed on an invoice",
+      "contextRecovered": true,
+      "uiRole": "label",
+      "issues": [
+        {
+          "type": "meaning_shift",
+          "severity": "major",
+          "source": "model",
+          "explanation": "\"Vencido\" means overdue. It tells the customer their payment is late, which the English \"Due\" does not say — the field just shows the balance owed.",
+          "evidence": "Vencido",
+          "suggestion": "Importe adeudado"
+        }
+      ],
+      "score": 75,
+      "band": "review",
+      "action": "Spot-check before shipping",
+      "forcedToHuman": true
+    },
+    {
+      "key": "ticket.field.due",
+      "source": "Due",
+      "target": "Vencimiento",
+      "comment": "Field showing the due date/deadline for resolving a ticket",
+      "contextRecovered": true,
+      "uiRole": "label",
+      "issues": [],
+      "score": 100,
+      "band": "approve",
+      "action": "Ship as is",
+      "forcedToHuman": false
+    },
+    {
+      "key": "ticket.button.assign",
+      "source": "Assign",
+      "target": "Asignar",
+      "comment": "Button to assign a ticket to a specific agent",
+      "contextRecovered": true,
+      "uiRole": "action",
+      "issues": [],
+      "score": 100,
+      "band": "approve",
+      "action": "Ship as is",
+      "forcedToHuman": false
+    },
+    {
+      "key": "ticket.button.share",
+      "source": "Share",
+      "target": "Compartir",
+      "comment": "Button to share a ticket's link with another teammate",
+      "contextRecovered": true,
+      "uiRole": "action",
+      "issues": [],
+      "score": 100,
+      "band": "approve",
+      "action": "Ship as is",
+      "forcedToHuman": false
+    },
+    {
+      "key": "feed.button.post",
+      "source": "Post",
+      "target": "Correo",
+      "comment": "Button to publish a new post to the internal team feed",
+      "contextRecovered": true,
+      "uiRole": "action",
+      "issues": [
+        {
+          "type": "wrong_sense",
+          "severity": "critical",
+          "source": "model",
+          "explanation": "\"Correo\" means mail. This button publishes a message to the team feed, so the translation has taken the wrong meaning of \"Post\" entirely — a Spanish speaker would not know what this button does.",
+          "evidence": "Correo",
+          "suggestion": "Publicar"
+        },
+        {
+          "type": "ui_role_mismatch",
+          "severity": "major",
+          "source": "model",
+          "explanation": "It is also a noun where a button needs a verb.",
+          "evidence": "Correo",
+          "suggestion": "Publicar"
+        }
+      ],
+      "score": 35,
+      "band": "reject",
+      "action": "Retranslate",
+      "forcedToHuman": true
+    },
+    {
+      "key": "report.button.export",
+      "source": "Export",
+      "target": "Exportar",
+      "comment": "Button to export a report as a CSV or PDF file",
+      "contextRecovered": true,
+      "uiRole": "action",
+      "issues": [],
+      "score": 100,
+      "band": "approve",
+      "action": "Ship as is",
+      "forcedToHuman": false
+    }
+  ],
+  "selfCheck": [
+    {
+      "key": "ticket.button.open",
+      "source": "Open",
+      "target": "Reabrir",
+      "comment": "Button an agent clicks to open a closed support ticket back up",
+      "contextRecovered": true,
+      "uiRole": "action",
+      "issues": [],
+      "score": 100,
+      "band": "approve",
+      "action": "Ship as is",
+      "forcedToHuman": false
+    },
+    {
+      "key": "settings.hours.status_label_open",
+      "source": "Open",
+      "target": "Abierto",
+      "comment": "Label shown when the support desk is currently open for business",
+      "contextRecovered": true,
+      "uiRole": "state",
+      "issues": [],
+      "score": 100,
+      "band": "approve",
+      "action": "Ship as is",
+      "forcedToHuman": false
+    },
+    {
+      "key": "ticket.button.close",
+      "source": "Close",
+      "target": "Cerrar",
+      "comment": "Button an agent clicks to mark a ticket as resolved/closed",
+      "contextRecovered": true,
+      "uiRole": "action",
+      "issues": [],
+      "score": 100,
+      "band": "approve",
+      "action": "Ship as is",
+      "forcedToHuman": false
+    },
+    {
+      "key": "feed.button.post",
+      "source": "Post",
+      "target": "Publicar",
+      "comment": "Button to publish a new post to the internal team feed",
+      "contextRecovered": true,
+      "uiRole": "action",
+      "issues": [],
+      "score": 100,
+      "band": "approve",
+      "action": "Ship as is",
+      "forcedToHuman": false
+    },
+    {
+      "key": "mail.label.post",
+      "source": "Post",
+      "target": "Correo postal",
+      "comment": "Label for a physical mail correspondence address field",
+      "contextRecovered": true,
+      "uiRole": "label",
+      "issues": [],
+      "score": 100,
+      "band": "approve",
+      "action": "Ship as is",
+      "forcedToHuman": false
+    },
+    {
+      "key": "ticket.button.assign",
+      "source": "Assign",
+      "target": "Asignar",
+      "comment": "Button to assign a ticket to a specific agent",
+      "contextRecovered": true,
+      "uiRole": "action",
+      "issues": [],
+      "score": 100,
+      "band": "approve",
+      "action": "Ship as is",
+      "forcedToHuman": false
+    },
+    {
+      "key": "ticket.field.due",
+      "source": "Due",
+      "target": "Vencimiento",
+      "comment": "Field showing the due date/deadline for resolving a ticket",
+      "contextRecovered": true,
+      "uiRole": "label",
+      "issues": [],
+      "score": 100,
+      "band": "approve",
+      "action": "Ship as is",
+      "forcedToHuman": false
+    },
+    {
+      "key": "invoice.field.amount_due",
+      "source": "Due",
+      "target": "Importe adeudado",
+      "comment": "Field showing the amount of money owed on an invoice",
+      "contextRecovered": true,
+      "uiRole": "label",
+      "issues": [],
+      "score": 100,
+      "band": "approve",
+      "action": "Ship as is",
+      "forcedToHuman": false
+    },
+    {
+      "key": "ticket.button.share",
+      "source": "Share",
+      "target": "Compartir",
+      "comment": "Button to share a ticket's link with another teammate",
+      "contextRecovered": true,
+      "uiRole": "action",
+      "issues": [],
+      "score": 100,
+      "band": "approve",
+      "action": "Ship as is",
+      "forcedToHuman": false
+    },
+    {
+      "key": "report.button.export",
+      "source": "Export",
+      "target": "Exportar",
+      "comment": "Button to export a report as a CSV or PDF file",
+      "contextRecovered": true,
+      "uiRole": "action",
+      "issues": [],
+      "score": 100,
+      "band": "approve",
+      "action": "Ship as is",
+      "forcedToHuman": false
+    }
+  ],
+  "summary": {
+    "translated": 10,
+    "scored": 8,
+    "clean": 5,
+    "flagged": 3,
+    "needsHuman": 3,
+    "meanScore": 80.6
+  }
+}

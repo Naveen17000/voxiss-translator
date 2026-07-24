@@ -1,0 +1,10 @@
+{
+  "$comment": "Glossary compliance is a deterministic check — it never goes to the model. 'mandated' entries must be translated exactly as specified when the source term appears; 'doNotTranslate' entries must survive verbatim into the target. Illustrative entries for this product domain; in production this file is owned by the localization lead, not the engineer.",
+  "locale": "es",
+  "mandated": [
+    { "source": "ticket", "target": "ticket", "note": "Product term. Kept in English across the Spanish UI for consistency with the brand." },
+    { "source": "invoice", "target": "factura" },
+    { "source": "report", "target": "informe" }
+  ],
+  "doNotTranslate": ["CSV", "PDF", "API", "URL", "Voxiis"]
+}

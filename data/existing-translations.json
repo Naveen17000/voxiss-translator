@@ -1,0 +1,14 @@
+{
+  "$comment": "Part 2 input: Spanish translations produced by a previous non-AI process. No developer comments were supplied with this batch — the scorer joins each row to data/source-strings.json by key to recover the context, and records whether the join succeeded.",
+  "targetLocale": "es",
+  "translations": [
+    { "key": "ticket.button.open", "source": "Open", "target": "Abierto" },
+    { "key": "ticket.button.close", "source": "Close", "target": "Cerrar" },
+    { "key": "invoice.field.amount_due", "source": "Due", "target": "Vencido" },
+    { "key": "ticket.field.due", "source": "Due", "target": "Vencimiento" },
+    { "key": "ticket.button.assign", "source": "Assign", "target": "Asignar" },
+    { "key": "ticket.button.share", "source": "Share", "target": "Compartir" },
+    { "key": "feed.button.post", "source": "Post", "target": "Correo" },
+    { "key": "report.button.export", "source": "Export", "target": "Exportar" }
+  ]
+}

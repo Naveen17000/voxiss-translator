@@ -1,0 +1,27 @@
+{
+  "name": "voxiis-localization-pipeline",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Context-aware translation and objective quality scoring for UI strings, powered by Claude.",
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "pipeline": "tsx scripts/run-pipeline.ts",
+    "pipeline:mock": "PIPELINE_MODE=mock tsx scripts/run-pipeline.ts",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@anthropic-ai/sdk": "^0.114.0",
+    "next": "^15.5.4",
+    "react": "^19.1.0",
+    "react-dom": "^19.1.0"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.0",
+    "@types/react": "^19.1.0",
+    "@types/react-dom": "^19.1.0",
+    "tsx": "^4.19.2",
+    "typescript": "^5.7.2"
+  }
+}

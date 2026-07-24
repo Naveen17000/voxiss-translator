@@ -1,0 +1,56 @@
+{
+  "$comment": "Part 1 input. The string catalogue is also the source of truth the Part 2 scorer joins against for developer context — see data/existing-translations.json.",
+  "targetLocale": "es",
+  "strings": [
+    {
+      "key": "ticket.button.open",
+      "source": "Open",
+      "comment": "Button an agent clicks to open a closed support ticket back up"
+    },
+    {
+      "key": "settings.hours.status_label_open",
+      "source": "Open",
+      "comment": "Label shown when the support desk is currently open for business"
+    },
+    {
+      "key": "ticket.button.close",
+      "source": "Close",
+      "comment": "Button an agent clicks to mark a ticket as resolved/closed"
+    },
+    {
+      "key": "feed.button.post",
+      "source": "Post",
+      "comment": "Button to publish a new post to the internal team feed"
+    },
+    {
+      "key": "mail.label.post",
+      "source": "Post",
+      "comment": "Label for a physical mail correspondence address field"
+    },
+    {
+      "key": "ticket.button.assign",
+      "source": "Assign",
+      "comment": "Button to assign a ticket to a specific agent"
+    },
+    {
+      "key": "ticket.field.due",
+      "source": "Due",
+      "comment": "Field showing the due date/deadline for resolving a ticket"
+    },
+    {
+      "key": "invoice.field.amount_due",
+      "source": "Due",
+      "comment": "Field showing the amount of money owed on an invoice"
+    },
+    {
+      "key": "ticket.button.share",
+      "source": "Share",
+      "comment": "Button to share a ticket's link with another teammate"
+    },
+    {
+      "key": "report.button.export",
+      "source": "Export",
+      "comment": "Button to export a report as a CSV or PDF file"
+    }
+  ]
+}
