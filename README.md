@@ -116,7 +116,31 @@ rather than quietly scoring them at a disadvantage.
 
 ---
 
-## Results
+## Part 1 — Translations
+
+10 strings translated from the key + developer comment. The three English words that appear under two
+different keys — **Open**, **Post**, **Due** — each resolve to two different Spanish words, decided by
+the UI element the key names and the context the comment gives.
+
+| Key | English | Spanish | Why this form |
+|---|---|---|---|
+| `ticket.button.open` | Open | **Reabrir** | button → action; the comment says *reopen* a closed ticket, so the infinitive |
+| `settings.hours.status_label_open` | Open | **Abierto** | status label → an adjective/state, not an action |
+| `feed.button.post` | Post | **Publicar** | button → *publish to the feed* |
+| `mail.label.post` | Post | **Dirección postal** | field label → *post* in the physical-mail sense |
+| `ticket.field.due` | Due | **Vencimiento** | field → the *due date*, a deadline |
+| `invoice.field.amount_due` | Due | **Importe adeudado** | field → the *amount owed*, not a date |
+| `ticket.button.close` | Close | **Cerrar** | button → infinitive |
+| `ticket.button.assign` | Assign | **Asignar** | button → infinitive |
+| `ticket.button.share` | Share | **Compartir** | button → infinitive |
+| `report.button.export` | Export | **Exportar** | button → infinitive |
+
+Each row on the live report also carries the model's disambiguation note, the alternatives it rejected
+and why, and a confidence level.
+
+---
+
+## Part 2 — Scores
 
 8 existing translations scored, 5 clean, 3 flagged, mean 80.6.
 
