@@ -1,18 +1,47 @@
 {
   "meta": {
-    "startedAt": "2026-07-24T15:13:15.063Z",
-    "finishedAt": "2026-07-24T15:13:15.066Z",
-    "mode": "mock",
-    "model": "(fixtures — no model called)",
+    "startedAt": "2026-07-26T03:45:11.292Z",
+    "finishedAt": "2026-07-26T03:45:43.253Z",
+    "mode": "live",
+    "model": "claude-opus-4-8",
     "effort": "high",
     "promptVersion": "1.0.0",
     "scoringPolicyVersion": "1.0.0",
-    "apiCalls": 0,
+    "apiCalls": 28,
     "usage": {
-      "inputTokens": 0,
-      "outputTokens": 0
+      "inputTokens": 41773,
+      "outputTokens": 6621
     },
-    "requestIds": []
+    "requestIds": [
+      "req_011CdPyrnKw9d8XYiRdmxosT",
+      "req_011CdPyrnNQwW4dMFhevg1FE",
+      "req_011CdPyrnNQapxpkMpx46p2F",
+      "req_011CdPyrnYadwjq4Vo1SRzAP",
+      "req_011CdPyrnXLhJRFay6Kbqvsm",
+      "req_011CdPyrnKBtR4rFUCaxK3gK",
+      "req_011CdPyrnKgf7xcnLrKks8ze",
+      "req_011CdPyrnLRdLRdrDizHyjCM",
+      "req_011CdPyrnQtbzfs2E9ie2mhv",
+      "req_011CdPyrnNf7aoTjxR6PQnGt",
+      "req_011CdPyt2WVbjVHEhE3yeV8z",
+      "req_011CdPyt2eRv6tDnVAQMEPoa",
+      "req_011CdPyt2TGhJbfYdevDQtX7",
+      "req_011CdPyt2dvrcBjk47Ua43VG",
+      "req_011CdPyt2ffnDUrRo1aX4oh2",
+      "req_011CdPyt5tPbEXxFXfteGi1y",
+      "req_011CdPyt2hA3EmucC8mgxYoZ",
+      "req_011CdPyt2hA8y5ivnWWFtxTk",
+      "req_011CdPyt2bhLNgmZ1w6CC9zj",
+      "req_011CdPyt2i9aHMYpwnTwx767",
+      "req_011CdPyt2fffHooRZRDiW2Fk",
+      "req_011CdPyt2gufFjXe1GMuLfs1",
+      "req_011CdPyt2fv6gfN76hdXsW1J",
+      "req_011CdPyt2gQkRrcD3X2BowqE",
+      "req_011CdPyt2VVtbV4L8Qu1pASS",
+      "req_011CdPyt2dgcVQVgZJvRCXTj",
+      "req_011CdPyt2ZxmCNfAp6EqPtKf",
+      "req_011CdPyt3Q5EpHK17CTcsdrH"
+    ]
   },
   "translations": [
     {
@@ -28,14 +57,10 @@
       "alternativesConsidered": [
         {
           "text": "Abrir",
-          "rejectedBecause": "Correct verb, but the comment says the ticket was closed and is being opened back up, which Spanish marks with the re- prefix."
-        },
-        {
-          "text": "Abierto",
-          "rejectedBecause": "An adjective describing a state. This is a button, so it needs a command."
+          "rejectedBecause": "The button reopens a ticket that was already closed, so 'Reabrir' (reopen) reflects the actual action more precisely and naturally than a plain 'Abrir'."
         }
       ],
-      "disambiguationNote": "This is a button an agent presses, so Spanish needs a verb, not a description. The comment says the ticket is being opened back up after being closed, so \"Reabrir\" (reopen) is more precise than plain \"Abrir\".",
+      "disambiguationNote": "This is a button an agent clicks to reopen a previously closed ticket, so it uses the action verb form 'Reabrir'. It differs from the other 'Open' in the batch, which is a status label describing that the support desk is currently open for business (an adjective/state, not a clickable action).",
       "confidence": "high",
       "assumptions": []
     },
@@ -52,10 +77,18 @@
       "alternativesConsidered": [
         {
           "text": "Abrir",
-          "rejectedBecause": "That is a command. Nothing is being clicked here — the label describes the desk's current state."
+          "rejectedBecause": "Es un infinitivo, propio de un botón que ordena una acción; aquí se describe un estado, no se da una orden."
+        },
+        {
+          "text": "Disponible",
+          "rejectedBecause": "Se aleja del sentido literal de 'abierto' y podría confundirse con la disponibilidad de un agente en lugar del horario de atención."
+        },
+        {
+          "text": "Abierta",
+          "rejectedBecause": "La forma femenina no encaja; el sujeto implícito es el servicio de soporte y se usa la forma neutra/masculina habitual en estados de la interfaz."
         }
       ],
-      "disambiguationNote": "Same English word as the ticket button, opposite grammar. This one reports that the support desk is currently open for business, so Spanish uses the adjective \"Abierto\".",
+      "disambiguationNote": "Aquí 'Open' describe el estado actual del servicio de soporte (está atendiendo), así que se usa el adjetivo 'Abierto'. Es distinto del botón 'ticket.button.open', que es una acción que ejecuta el agente para reabrir un ticket y debe ir en infinitivo ('Abrir').",
       "confidence": "high",
       "assumptions": []
     },
@@ -70,14 +103,14 @@
       "alternativesConsidered": [
         {
           "text": "Cerrado",
-          "rejectedBecause": "A state, not an action. Wrong form for a button."
+          "rejectedBecause": "That's an adjective/past participle describing a state; this is an action button, which needs the infinitive in Spanish."
         },
         {
           "text": "Resolver",
-          "rejectedBecause": "Reads well, but the source says Close and the paired reopen button is \"Reabrir\"; keeping the open/close pairing is clearer."
+          "rejectedBecause": "Though the comment mentions 'resolved', the English word is 'Close' and the paired button 'ticket.button.open' (Open a closed ticket) confirms the close/open pairing, so 'Cerrar' keeps the two consistent."
         }
       ],
-      "disambiguationNote": "A button, so the infinitive \"Cerrar\". It pairs with \"Reabrir\" on the same ticket.",
+      "disambiguationNote": "This is a button an agent clicks to close a support ticket, so it uses the infinitive form 'Cerrar' as Spanish software conventions require for clickable actions. It pairs naturally with the 'Open' button ('Abrir') that reopens a closed ticket.",
       "confidence": "high",
       "assumptions": []
     },
@@ -93,15 +126,19 @@
       "translation": "Publicar",
       "alternativesConsidered": [
         {
-          "text": "Correo",
-          "rejectedBecause": "That is the postal sense of \"post\". This button publishes to a feed."
+          "text": "Publicación",
+          "rejectedBecause": "That is a noun ('a post'), which would be the wrong grammatical form for a clickable button; Spanish buttons use the infinitive."
         },
         {
           "text": "Enviar",
-          "rejectedBecause": "Means send. Publishing to a shared feed is more specific."
+          "rejectedBecause": "Means 'send/submit' — too generic and closer to the mail sense; 'publish to a feed' is more precisely 'Publicar'."
+        },
+        {
+          "text": "Correo",
+          "rejectedBecause": "That is the physical-mail sense used for mail.label.post; it does not apply to publishing to a team feed."
         }
       ],
-      "disambiguationNote": "\"Post\" here is the verb used in social feeds, not anything to do with mail. As a button it takes the infinitive \"Publicar\".",
+      "disambiguationNote": "Here 'Post' is the action of publishing a new message to the internal team feed, so it becomes the verb 'Publicar' on a button. This differs from mail.label.post, which is a noun about a physical mailing/correspondence address and would use a word like 'Correo' — never 'Publicar'.",
       "confidence": "high",
       "assumptions": []
     },
@@ -114,21 +151,25 @@
       "ambiguousWith": [
         "feed.button.post"
       ],
-      "translation": "Correo postal",
+      "translation": "Dirección postal",
       "alternativesConsidered": [
         {
-          "text": "Publicar",
-          "rejectedBecause": "The feed sense of \"post\". This field is about physical mail."
+          "text": "Correo postal",
+          "rejectedBecause": "Describes the postal service/mail itself rather than the address the field is meant to capture; less clear as an address-field label."
         },
         {
           "text": "Correo",
-          "rejectedBecause": "Ambiguous in Spanish — it reads as email first. \"Postal\" removes the doubt."
+          "rejectedBecause": "Too ambiguous in Spanish software—readers would assume email; loses the 'physical mail' sense entirely."
+        },
+        {
+          "text": "Publicar",
+          "rejectedBecause": "That is the 'publish to feed' meaning (feed.button.post), an action verb, not this address field."
         }
       ],
-      "disambiguationNote": "Same English word as the feed button, completely different meaning. This is a field label for a physical correspondence address, so it needs a noun phrase, and \"postal\" is what stops Spanish readers assuming email.",
+      "disambiguationNote": "Here 'Post' is the British word for physical mail, and the developer note says this labels the field for a physical correspondence address, so it names an address, not an action. I chose 'Dirección postal' (mailing address). This is completely different from feed.button.post, which is a button to publish a post and would be translated as an action like 'Publicar'.",
       "confidence": "high",
       "assumptions": [
-        "Read as the label for the address field itself rather than a section heading above several fields."
+        "The field captures the postal/mailing address, so a full 'Dirección postal' reads more naturally than a bare 'Correo postal'."
       ]
     },
     {
@@ -139,8 +180,17 @@
       "isAmbiguous": false,
       "ambiguousWith": [],
       "translation": "Asignar",
-      "alternativesConsidered": [],
-      "disambiguationNote": "Unambiguous. A button, so the infinitive.",
+      "alternativesConsidered": [
+        {
+          "text": "Asignar ticket",
+          "rejectedBecause": "The button label should stay short; the surrounding context already makes clear it applies to a ticket, and other buttons in this batch are single-word infinitives."
+        },
+        {
+          "text": "Asignado",
+          "rejectedBecause": "That is an adjective/past participle describing a state, but this is a clickable action button, which requires the infinitive form."
+        }
+      ],
+      "disambiguationNote": "This is a button an agent clicks to assign a ticket to an agent, so I used the infinitive 'Asignar', which is the standard form for action buttons in Spanish software.",
       "confidence": "high",
       "assumptions": []
     },
@@ -157,16 +207,22 @@
       "alternativesConsidered": [
         {
           "text": "Fecha de vencimiento",
-          "rejectedBecause": "Accurate but long for a field label; \"Vencimiento\" already reads as the due date in Spanish UIs."
+          "rejectedBecause": "Más largo; en una etiqueta de campo o columna suele bastar 'Vencimiento', que ya se entiende como fecha límite. Sería válido si se prefiere mayor claridad."
         },
         {
-          "text": "Vencido",
-          "rejectedBecause": "Means overdue. The field shows the deadline, not whether it has passed."
+          "text": "Fecha límite",
+          "rejectedBecause": "Correcto en significado, pero 'Vencimiento' es la convención más habitual en software para plazos y encaja mejor como nombre de campo."
+        },
+        {
+          "text": "Importe adeudado",
+          "rejectedBecause": "Ese es el sentido de 'Due' en la factura (dinero pendiente), no el de este campo, que se refiere a una fecha límite."
         }
       ],
-      "disambiguationNote": "The deadline for resolving a ticket. A field label, so a noun.",
+      "disambiguationNote": "Aquí 'Due' se refiere a la fecha límite para resolver un ticket, por eso uso 'Vencimiento' (un plazo). En la factura, 'Due' (amount_due) significa dinero pendiente de pago, así que allí se traduce como 'Importe adeudado'; son sentidos distintos y no deben coincidir.",
       "confidence": "high",
-      "assumptions": []
+      "assumptions": [
+        "Se prefiere una etiqueta corta; si el diseño da espacio, 'Fecha de vencimiento' sería igualmente apropiada."
+      ]
     },
     {
       "key": "invoice.field.amount_due",
@@ -180,15 +236,23 @@
       "translation": "Importe adeudado",
       "alternativesConsidered": [
         {
-          "text": "Vencimiento",
-          "rejectedBecause": "That is the due date sense. This field is money owed, not a date."
+          "text": "Importe pendiente",
+          "rejectedBecause": "Natural and common, but slightly less precise about the money being owed; 'adeudado' matches 'owed' more directly."
         },
         {
-          "text": "Vencido",
-          "rejectedBecause": "Means overdue — it asserts the payment is late, which the English does not."
+          "text": "Importe a pagar",
+          "rejectedBecause": "Valid, but frames it from the payer's action rather than stating what is owed on the invoice."
+        },
+        {
+          "text": "Vencimiento",
+          "rejectedBecause": "This means a due date/deadline, which is the correct sense for the ticket field, not for a money amount."
+        },
+        {
+          "text": "Adeudado",
+          "rejectedBecause": "Works as an adjective but reads incomplete as a field label; adding 'Importe' makes it clearly a monetary amount."
         }
       ],
-      "disambiguationNote": "Same English word as the ticket deadline field, but the key and comment both say this is an amount of money. \"Importe adeudado\" is the balance owed and says nothing about whether it is late.",
+      "disambiguationNote": "Here 'Due' refers to the sum of money owed on an invoice, so it's a noun phrase meaning the amount owed: 'Importe adeudado'. This is different from the ticket field, where 'Due' means a deadline/date and would be translated as 'Vencimiento'.",
       "confidence": "high",
       "assumptions": []
     },
@@ -200,8 +264,17 @@
       "isAmbiguous": false,
       "ambiguousWith": [],
       "translation": "Compartir",
-      "alternativesConsidered": [],
-      "disambiguationNote": "Unambiguous. A button, so the infinitive.",
+      "alternativesConsidered": [
+        {
+          "text": "Enviar",
+          "rejectedBecause": "Means 'send', which is a different action; the button is about sharing a link, not sending the ticket itself."
+        },
+        {
+          "text": "Compartido",
+          "rejectedBecause": "That is an adjective/past participle ('shared'), which describes a state, not a clickable action button."
+        }
+      ],
+      "disambiguationNote": "This is a button that lets someone share a ticket's link with a teammate, so I used the standard Spanish verb 'Compartir' in its infinitive form, which is the convention for buttons.",
       "confidence": "high",
       "assumptions": []
     },
@@ -213,8 +286,17 @@
       "isAmbiguous": false,
       "ambiguousWith": [],
       "translation": "Exportar",
-      "alternativesConsidered": [],
-      "disambiguationNote": "Unambiguous. A button, so the infinitive.",
+      "alternativesConsidered": [
+        {
+          "text": "Exportación",
+          "rejectedBecause": "Es un sustantivo; en un botón la convención española es el infinitivo, no el nombre de la acción."
+        },
+        {
+          "text": "Exportado",
+          "rejectedBecause": "Es un participio/estado, no una orden; no corresponde a un botón de acción."
+        }
+      ],
+      "disambiguationNote": "Es el texto de un botón que exporta un informe a CSV o PDF. En español los botones usan el infinitivo, por eso 'Exportar'.",
       "confidence": "high",
       "assumptions": []
     }
@@ -232,22 +314,14 @@
           "type": "ui_role_mismatch",
           "severity": "major",
           "source": "model",
-          "explanation": "This is a button an agent clicks, but \"Abierto\" is a description of a state rather than an instruction — like labelling a button \"Opened\" instead of \"Open\".",
+          "explanation": "This is a button that performs an action, so it needs a verb, but 'Abierto' is an adjective/state word meaning 'opened'.",
           "evidence": "Abierto",
-          "suggestion": "Reabrir"
-        },
-        {
-          "type": "wrong_sense",
-          "severity": "critical",
-          "source": "model",
-          "explanation": "The English \"Open\" here is the action of reopening a closed ticket, and this translation picked the meaning \"is currently open\" instead.",
-          "evidence": "Abierto",
-          "suggestion": "Reabrir"
+          "suggestion": "Abrir"
         }
       ],
-      "score": 35,
-      "band": "reject",
-      "action": "Retranslate",
+      "score": 75,
+      "band": "review",
+      "action": "Spot-check before shipping",
       "forcedToHuman": true
     },
     {
@@ -272,17 +346,25 @@
       "uiRole": "label",
       "issues": [
         {
-          "type": "meaning_shift",
+          "type": "wrong_sense",
+          "severity": "critical",
+          "source": "model",
+          "explanation": "The field shows the amount of money owed, but the translation means 'overdue/expired', which is a different concept.",
+          "evidence": "Vencido",
+          "suggestion": "Importe adeudado"
+        },
+        {
+          "type": "ui_role_mismatch",
           "severity": "major",
           "source": "model",
-          "explanation": "\"Vencido\" means overdue. It tells the customer their payment is late, which the English \"Due\" does not say — the field just shows the balance owed.",
+          "explanation": "This is a field label and needs a noun phrase, but the translation is an adjective.",
           "evidence": "Vencido",
           "suggestion": "Importe adeudado"
         }
       ],
-      "score": 75,
-      "band": "review",
-      "action": "Spot-check before shipping",
+      "score": 35,
+      "band": "reject",
+      "action": "Retranslate",
       "forcedToHuman": true
     },
     {
@@ -336,7 +418,7 @@
           "type": "wrong_sense",
           "severity": "critical",
           "source": "model",
-          "explanation": "\"Correo\" means mail. This button publishes a message to the team feed, so the translation has taken the wrong meaning of \"Post\" entirely — a Spanish speaker would not know what this button does.",
+          "explanation": "The English 'Post' here means to publish an item to the feed, but the translation means 'mail/email', which is the wrong meaning entirely.",
           "evidence": "Correo",
           "suggestion": "Publicar"
         },
@@ -344,7 +426,7 @@
           "type": "ui_role_mismatch",
           "severity": "major",
           "source": "model",
-          "explanation": "It is also a noun where a button needs a verb.",
+          "explanation": "This is a button that should use a verb in the infinitive, but a noun was used instead.",
           "evidence": "Correo",
           "suggestion": "Publicar"
         }
@@ -424,12 +506,21 @@
     {
       "key": "mail.label.post",
       "source": "Post",
-      "target": "Correo postal",
+      "target": "Dirección postal",
       "comment": "Label for a physical mail correspondence address field",
       "contextRecovered": true,
       "uiRole": "label",
-      "issues": [],
-      "score": 100,
+      "issues": [
+        {
+          "type": "length_overflow",
+          "severity": "minor",
+          "source": "rule",
+          "explanation": "At 16 characters against 4 in English, this may not fit the space it is shown in.",
+          "evidence": "16 chars, budget 14",
+          "suggestion": null
+        }
+      ],
+      "score": 90,
       "band": "approve",
       "action": "Ship as is",
       "forcedToHuman": false

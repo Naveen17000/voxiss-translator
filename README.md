@@ -19,13 +19,13 @@ the strings in Part 1 and the previous process's mistake stops looking like bad 
 | Key | English | Existing Spanish | What's wrong |
 |---|---|---|---|
 | `ticket.button.open` | Open | **Abierto** | "Abierto" is the correct translation — of `settings.hours.status_label_open`, a different string |
-| `feed.button.post` | Post | **Correo** | "Correo" is the correct translation — of `mail.label.post`, a different string |
+| `feed.button.post` | Post | **Correo** | "Correo" is *mail*-sense Spanish — the meaning `mail.label.post` needs, dropped onto a button that means *publish* |
 
 Right word, wrong slot. Twice. The old process wasn't producing bad Spanish, it was producing Spanish
 for a string it couldn't see the context of — and then two strings that shared an English word got
-each other's answer. `invoice.field.amount_due` → "Vencido" is the same failure in a quieter register:
-"Vencido" means *overdue*, so an invoice screen now asserts the customer is late when the English only
-said an amount was owed.
+each other's answer. `invoice.field.amount_due` → "Vencido" is the same kind of failure in a form
+that's far easier to miss by eye: "Vencido" means *overdue*, so an invoice screen now asserts the
+customer is late when the English only said an amount was owed.
 
 That is the failure this pipeline is built to make impossible, and it's why context is an input to
 every stage rather than a nice-to-have.
@@ -122,9 +122,9 @@ rather than quietly scoring them at a disadvantage.
 
 | Key | English | Spanish | Score | Finding |
 |---|---|---|---|---|
-| `ticket.button.open` | Open | Abierto | **35** | wrong sense + wrong form for a button |
-| `feed.button.post` | Post | Correo | **35** | wrong sense + wrong form for a button |
-| `invoice.field.amount_due` | Due | Vencido | **75** | says *overdue* where the English says *owed* |
+| `ticket.button.open` | Open | Abierto | **75** | wrong form for a button — an adjective where a verb is needed |
+| `feed.button.post` | Post | Correo | **35** | wrong sense (*mail*, not *publish*) + wrong form |
+| `invoice.field.amount_due` | Due | Vencido | **35** | wrong sense (*overdue*, not *owed*) + wrong form |
 | `ticket.button.close` | Close | Cerrar | 100 | — |
 | `ticket.field.due` | Due | Vencimiento | 100 | — |
 | `ticket.button.assign` | Assign | Asignar | 100 | — |
@@ -207,18 +207,20 @@ Worth being straight about, since it changes how much weight to put on the numbe
 | Deterministic checks, scoring policy, routing | Unit tested, exact assertions |
 | Request/response handling against the real SDK | Tested against a local stub |
 | Full pipeline, CLI, report rendering, web app, API route | Exercised end to end from a clean clone |
-| **Claude's actual judgment on these strings** | **Not yet run — no API key available at build time** |
+| **Claude's judgment on these strings** | **Run live against the API — 28 calls, `claude-opus-4-8`** |
 
-The committed run in `reports/` is a **fixture run**, and says so in a banner on the page and at the
-top of the Markdown report. The fixtures encode the analysis I'd expect the model to reach; they are
-not model output, and nothing here pretends otherwise. One `npm run pipeline` with a key replaces them
-with real results and the banner disappears.
+The committed run in `reports/` is a **live run**: `npm run pipeline` was executed against the Claude
+API, and every number above is the model's own output. Running without a key still produces a labelled
+fixture run — mock mode says so in a banner on the page and at the top of the Markdown report — so no
+one mistakes offline output for the real thing.
 
-The specific thing that can't be known until then: whether the model over-flags. Five of the eight
+The one thing the offline tests couldn't answer was whether the model over-flags: five of the eight
 existing translations are correct, and a scorer that invents issues on correct strings would be worse
-than useless. The prompt tells it that an empty issue list is a normal result, and the penalty table
-means a spurious `fluency` flag costs 10 rather than sinking a string — but that's a design argument,
-not evidence.
+than useless. The live run settles it — all five came back with an empty issue list and scored 100.
+The model also diverged from my own fixtures on two strings, and I kept its judgment rather than mine:
+it treated `Abierto` on a reopen button as a form error only (75, not 35) and judged `Vencido` for an
+owed amount a critical wrong-sense (35, not 75). Both are defensible, and the point is that either
+number can be recomputed by hand from the issue list committed beside it.
 
 ---
 
@@ -258,8 +260,10 @@ not evidence.
 2. **`ticket.button.open` means reopen.** The comment says "open a closed support ticket back up", so
    the output is `Reabrir` rather than `Abrir`. If the same button also opens never-closed tickets,
    `Abrir` is the safer choice. Flagged rather than silently decided.
-3. **`mail.label.post` labels the field, not a section.** Translated as `Correo postal`; if it's a
-   heading above several address fields, `Dirección postal` fits better.
+3. **`mail.label.post` is the *mail* sense, not *publish*.** The model read `Post` as British English
+   for physical mail and produced `Dirección postal` (mailing address); if the label sits over a single
+   line rather than a block, `Correo postal` is the tighter fit. The disambiguation that matters is that
+   it's mail, not a feed post — and that held.
 4. **The glossary is illustrative.** I wrote it to exercise the code path — in production it's owned
    by the localization lead, not the engineer. Note that **it doesn't fire on this dataset**: none of
    the 18 source strings contain a glossary term. The check is implemented and unit-exercisable, but
