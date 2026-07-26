@@ -5,7 +5,7 @@ Voxiis — AI Engineer (Agents & Internal Products), Round 2.
 A working pipeline that translates product UI strings English → Spanish using the context they
 actually ship in, and scores existing translations against a fixed, published policy.
 
-- **Live report:** _(deployed link)_
+- **Live report:** https://voxiss-translator.vercel.app/
 - **Run it yourself:** `npm install && npm run pipeline:mock` — no API key needed
 - **Full run output:** [`reports/baseline.md`](reports/baseline.md) · [`reports/baseline.json`](reports/baseline.json)
 
